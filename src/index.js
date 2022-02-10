@@ -6,6 +6,7 @@ import React from "react";
 import ReactDOM from "react-dom";
 import "./index.css";
 import App from "./App";
+import StoreContext from "./StoreContext";
 import { addPost, addMessage, subscribe } from "./redux/store";
 import { updateNewPostText, updateNewMessageText } from "./redux/store";
 
@@ -14,12 +15,14 @@ import { updateNewPostText, updateNewMessageText } from "./redux/store";
 let rerenderEntireTree = (state) => {
   ReactDOM.render(
     <React.StrictMode>
-      <App
-        state={state}
-        dispatch={store.dispatch.bind(store)}
-        messages={store.getState().messages}
-        store={store}
-      />
+      <StoreContext.Provider value={store}>
+        <App
+        // state={state}
+        // dispatch={store.dispatch.bind(store)}
+        // messages={store.getState().messages}
+        // store={store}
+        />{" "}
+      </StoreContext.Provider>
     </React.StrictMode>,
     document.getElementById("root")
   );
